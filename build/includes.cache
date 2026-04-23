@@ -1,0 +1,62 @@
+[
+  {
+    "Sourcefile": null,
+    "Include": "",
+    "Includepath": "C:\\Users\\Mimdal\\AppData\\Local\\Arduino15\\packages\\rp2040\\hardware\\rp2040\\5.5.1\\cores\\rp2040"
+  },
+  {
+    "Sourcefile": null,
+    "Include": "",
+    "Includepath": "C:\\Users\\Mimdal\\AppData\\Local\\Arduino15\\packages\\rp2040\\hardware\\rp2040\\5.5.1\\variants\\waveshare_rp2040_zero"
+  },
+  {
+    "Sourcefile": "C:\\Users\\Mimdal\\Documents\\Arduino\\Minisumo26v2\\build\\sketch\\Minisumo26v2.ino.cpp",
+    "Include": "Adafruit_NeoPixel.h",
+    "Includepath": "C:\\Users\\Mimdal\\Documents\\Arduino\\libraries\\Adafruit_NeoPixel"
+  },
+  {
+    "Sourcefile": "C:\\Users\\Mimdal\\Documents\\Arduino\\Minisumo26v2\\build\\sketch\\Minisumo26v2.ino.cpp",
+    "Include": "Servo.h",
+    "Includepath": "C:\\Users\\Mimdal\\AppData\\Local\\Arduino15\\packages\\rp2040\\hardware\\rp2040\\5.5.1\\libraries\\Servo\\src"
+  },
+  {
+    "Sourcefile": "C:\\Users\\Mimdal\\Documents\\Arduino\\Minisumo26v2\\build\\sketch\\Minisumo26v2.ino.cpp",
+    "Include": "",
+    "Includepath": null
+  },
+  {
+    "Sourcefile": "C:\\Users\\Mimdal\\Documents\\Arduino\\libraries\\Adafruit_NeoPixel\\Adafruit_NeoPixel.cpp",
+    "Include": "",
+    "Includepath": null
+  },
+  {
+    "Sourcefile": "C:\\Users\\Mimdal\\Documents\\Arduino\\libraries\\Adafruit_NeoPixel\\Adafruit_Neopixel_RP2.cpp",
+    "Include": "",
+    "Includepath": null
+  },
+  {
+    "Sourcefile": "C:\\Users\\Mimdal\\Documents\\Arduino\\libraries\\Adafruit_NeoPixel\\esp.c",
+    "Include": "",
+    "Includepath": null
+  },
+  {
+    "Sourcefile": "C:\\Users\\Mimdal\\Documents\\Arduino\\libraries\\Adafruit_NeoPixel\\esp8266.c",
+    "Include": "",
+    "Includepath": null
+  },
+  {
+    "Sourcefile": "C:\\Users\\Mimdal\\Documents\\Arduino\\libraries\\Adafruit_NeoPixel\\kendyte_k210.c",
+    "Include": "",
+    "Includepath": null
+  },
+  {
+    "Sourcefile": "C:\\Users\\Mimdal\\Documents\\Arduino\\libraries\\Adafruit_NeoPixel\\psoc6.c",
+    "Include": "",
+    "Includepath": null
+  },
+  {
+    "Sourcefile": "C:\\Users\\Mimdal\\AppData\\Local\\Arduino15\\packages\\rp2040\\hardware\\rp2040\\5.5.1\\libraries\\Servo\\src\\Servo.cpp",
+    "Include": "",
+    "Includepath": null
+  }
+]

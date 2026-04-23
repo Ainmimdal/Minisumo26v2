@@ -1,3 +1,4 @@
+#line 1 "C:\\Users\\Mimdal\\Documents\\Arduino\\Minisumo26v2\\Minisumo26v2.ino"
 #include <Arduino.h>
 #include <Adafruit_NeoPixel.h>
 #include <Servo.h>
@@ -54,6 +55,33 @@ const NamedColor COLOR_WHITE   = {255, 255, 255};
 uint32_t lastShownColor = 0;
 bool hasShownColor = false;
 
+#line 57 "C:\\Users\\Mimdal\\Documents\\Arduino\\Minisumo26v2\\Minisumo26v2.ino"
+void showColor(const NamedColor &c);
+#line 210 "C:\\Users\\Mimdal\\Documents\\Arduino\\Minisumo26v2\\Minisumo26v2.ino"
+void processServoDetach(unsigned long now);
+#line 217 "C:\\Users\\Mimdal\\Documents\\Arduino\\Minisumo26v2\\Minisumo26v2.ino"
+void updateVariantLeds();
+#line 222 "C:\\Users\\Mimdal\\Documents\\Arduino\\Minisumo26v2\\Minisumo26v2.ino"
+void readLineSensors(bool &leftLine, bool &rightLine);
+#line 227 "C:\\Users\\Mimdal\\Documents\\Arduino\\Minisumo26v2\\Minisumo26v2.ino"
+void setMotors(int leftSpeed, int rightSpeed);
+#line 273 "C:\\Users\\Mimdal\\Documents\\Arduino\\Minisumo26v2\\Minisumo26v2.ino"
+void startLineEvade(bool leftLine, bool rightLine, const CombatProfile &p, unsigned long now);
+#line 292 "C:\\Users\\Mimdal\\Documents\\Arduino\\Minisumo26v2\\Minisumo26v2.ino"
+void updateLineEvade(unsigned long now);
+#line 312 "C:\\Users\\Mimdal\\Documents\\Arduino\\Minisumo26v2\\Minisumo26v2.ino"
+bool handleLineEvade(bool leftLine, bool rightLine, const CombatProfile &p, unsigned long now);
+#line 326 "C:\\Users\\Mimdal\\Documents\\Arduino\\Minisumo26v2\\Minisumo26v2.ino"
+void updatePushingMatchRamp(unsigned long now);
+#line 339 "C:\\Users\\Mimdal\\Documents\\Arduino\\Minisumo26v2\\Minisumo26v2.ino"
+void runCombatCore(bool leftLine, bool rightLine, int s1, int s2, int s3, int s4, int s5, const CombatProfile &p, bool hasTarget, unsigned long now);
+#line 384 "C:\\Users\\Mimdal\\Documents\\Arduino\\Minisumo26v2\\Minisumo26v2.ino"
+void runPidTrackTest(bool leftLine, bool rightLine, int s1, int s2, int s3, int s4, int s5, const CombatProfile &p, bool hasTarget, unsigned long now);
+#line 409 "C:\\Users\\Mimdal\\Documents\\Arduino\\Minisumo26v2\\Minisumo26v2.ino"
+void setup();
+#line 446 "C:\\Users\\Mimdal\\Documents\\Arduino\\Minisumo26v2\\Minisumo26v2.ino"
+void loop();
+#line 57 "C:\\Users\\Mimdal\\Documents\\Arduino\\Minisumo26v2\\Minisumo26v2.ino"
 void showColor(const NamedColor &c) {
   uint32_t packed = pixel.Color(c.r, c.g, c.b);
   if (hasShownColor && packed == lastShownColor) return;

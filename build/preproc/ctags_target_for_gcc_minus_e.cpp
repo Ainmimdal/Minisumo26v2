@@ -1,7 +1,8 @@
-#include <Arduino.h>
-#include <Adafruit_NeoPixel.h>
-#include <Servo.h>
-#include "CombatProfile.h"
+# 1 "C:\\Users\\Mimdal\\Documents\\Arduino\\Minisumo26v2\\Minisumo26v2.ino"
+# 2 "C:\\Users\\Mimdal\\Documents\\Arduino\\Minisumo26v2\\Minisumo26v2.ino" 2
+# 3 "C:\\Users\\Mimdal\\Documents\\Arduino\\Minisumo26v2\\Minisumo26v2.ino" 2
+# 4 "C:\\Users\\Mimdal\\Documents\\Arduino\\Minisumo26v2\\Minisumo26v2.ino" 2
+# 5 "C:\\Users\\Mimdal\\Documents\\Arduino\\Minisumo26v2\\Minisumo26v2.ino" 2
 
 // ==========================================
 // 1. PIN DEFINITIONS
@@ -28,11 +29,11 @@ const int BUTTON_PIN = 0;
 const int START_BTN_PIN = 11; // IR Start Module
 const int SERVO_PIN = 1;
 const int LED1_PIN = 10; // blue
-const int LED2_PIN = 9;  // red
+const int LED2_PIN = 9; // red
 const int BATT_SENSE_PIN = 28;
 
 const int RGB_PIN = 16;
-Adafruit_NeoPixel pixel(1, RGB_PIN, NEO_GRB + NEO_KHZ800);
+Adafruit_NeoPixel pixel(1, RGB_PIN, ((1 << 6) | (1 << 4) | (0 << 2) | (2)) /*|< Transmit as G,R,B*/ + 0x0000 /*|< 800 KHz data transmission*/);
 
 Servo flagServo;
 
@@ -41,15 +42,15 @@ Servo flagServo;
 // ==========================================
 struct NamedColor { uint8_t r, g, b; };
 
-const NamedColor COLOR_OFF     = {0, 0, 0};
-const NamedColor COLOR_CYAN    = {0, 255, 255};
-const NamedColor COLOR_YELLOW  = {255, 255, 0};
-const NamedColor COLOR_RED     = {255, 0, 0};
-const NamedColor COLOR_BLUE    = {0, 0, 255};
+const NamedColor COLOR_OFF = {0, 0, 0};
+const NamedColor COLOR_CYAN = {0, 255, 255};
+const NamedColor COLOR_YELLOW = {255, 255, 0};
+const NamedColor COLOR_RED = {255, 0, 0};
+const NamedColor COLOR_BLUE = {0, 0, 255};
 const NamedColor COLOR_MAGENTA = {255, 0, 255};
-const NamedColor COLOR_ORANGE  = {255, 100, 0};
-const NamedColor COLOR_GREEN   = {0, 255, 0};
-const NamedColor COLOR_WHITE   = {255, 255, 255};
+const NamedColor COLOR_ORANGE = {255, 100, 0};
+const NamedColor COLOR_GREEN = {0, 255, 0};
+const NamedColor COLOR_WHITE = {255, 255, 255};
 
 uint32_t lastShownColor = 0;
 bool hasShownColor = false;
@@ -78,7 +79,7 @@ const unsigned long UI_DISPLAY_MS = 2500;
 // Steps: use EDGE_AMBUSH_SIDESTEP_MS for the opener, then hold until target and run PID.
 const unsigned long EDGE_AMBUSH_SIDESTEP_MS = 200;
 //                                          base evd srch   kp    kd  bkup trnS trnL
-const CombatProfile PROFILE_EDGE_AMBUSH   = { 30, 50,  30, 20.0, 70.0, 200, 150, 225};
+const CombatProfile PROFILE_EDGE_AMBUSH = { 30, 50, 30, 20.0, 70.0, 200, 150, 225};
 
 // STRATEGY 2: WAIT THEN INCH FORWARD
 // Preview Color: YELLOW
@@ -89,7 +90,7 @@ const unsigned long WAIT_INCH_HOLD_MS = 1700;
 const unsigned long WAIT_INCH_FORWARD_MS = 180;
 const unsigned long WAIT_INCH_PAUSE_MS = 720;
 //                                          base evd srch   kp    kd  bkup trnS trnL
-const CombatProfile PROFILE_WAIT_INCH     = { 60, 50,  30, 20.0,70.0, 250, 150, 225};
+const CombatProfile PROFILE_WAIT_INCH = { 60, 50, 30, 20.0,70.0, 250, 150, 225};
 
 // STRATEGY 3: STATIC GUARD THEN ATTACK
 // Preview Color: RED
@@ -97,7 +98,7 @@ const CombatProfile PROFILE_WAIT_INCH     = { 60, 50,  30, 20.0,70.0, 250, 150, 
 // Overall: pure defensive hold until enemy appears.
 // Steps: stay at 0 while no target; line safety still active; on target run PID.
 //                                          base evd srch   kp    kd  bkup trnS trnL
-const CombatProfile PROFILE_STATIC_GUARD  = { 70, 55,  25, 20.0, 70.0, 250, 150, 225};
+const CombatProfile PROFILE_STATIC_GUARD = { 70, 55, 25, 20.0, 70.0, 250, 150, 225};
 
 // STRATEGY 4: AGGRESSIVE RUSH + SEARCH
 // Preview Color: BLUE
@@ -106,7 +107,7 @@ const CombatProfile PROFILE_STATIC_GUARD  = { 70, 55,  25, 20.0, 70.0, 250, 150,
 // Steps: rush straight for AGGRO_RUSH_MS; if still no target keep driving straight; on target run PID.
 const unsigned long AGGRO_RUSH_MS = 200;
 //                                          base evd srch   kp    kd  bkup trnS trnL
-const CombatProfile PROFILE_AGGRO_RUSH    = { 50, 50,  20, 20.0, 70.0, 250, 150, 225};
+const CombatProfile PROFILE_AGGRO_RUSH = { 50, 50, 20, 20.0, 70.0, 250, 150, 225};
 
 // STRATEGY 5: BALANCED PID COMBAT
 // Preview Color: MAGENTA
@@ -114,7 +115,7 @@ const CombatProfile PROFILE_AGGRO_RUSH    = { 50, 50,  20, 20.0, 70.0, 250, 150,
 // Overall: standard all-rounder combat behavior.
 // Steps: no opener delay; immediately run PID with normal line safety.
 //                                          base evd srch   kp    kd  bkup trnS trnL
-const CombatProfile PROFILE_BALANCED_PID  = { 50, 50,  30, 20.0,70.0, 200, 185, 300};
+const CombatProfile PROFILE_BALANCED_PID = { 50, 50, 30, 20.0,70.0, 200, 185, 300};
 
 // STRATEGY 6: FLAG-AWARE PID
 // Preview Color: ORANGE
@@ -140,10 +141,10 @@ const unsigned long SIDE_FLANK_TURN_MS = 50;
 const unsigned long SIDE_FLANK_DRIVE_MS = 200;
 const unsigned long SIDE_FLANK_COUNTER_TURN_MS = 100;
 //                                          base evd srch   kp    kd  bkup trnS trnL
-const CombatProfile PROFILE_SIDE_FLANK   = { 75, 55,  30, 20.0,70.0, 200, 185, 300};
+const CombatProfile PROFILE_SIDE_FLANK = { 75, 55, 30, 20.0,70.0, 200, 185, 300};
 
 // Lost-target: spin toward last seen direction briefly, then drive straight.
-const unsigned long LOST_TARGET_SPIN_MS = 100;  // how long to spin toward lastSeen
+const unsigned long LOST_TARGET_SPIN_MS = 100; // how long to spin toward lastSeen
 const unsigned long LOST_TARGET_TIMEOUT_MS = 1000;
 
 // Pushing match: ramp speed when locked onto target continuously.
@@ -194,9 +195,9 @@ unsigned long flagCoActiveStartMs = 0;
 
 struct LineEvadeState {
   bool active;
-  uint8_t phase;          // 0=backup, 1=turn
+  uint8_t phase; // 0=backup, 1=turn
   int speed;
-  int turnDir;            // +1 right, -1 left
+  int turnDir; // +1 right, -1 left
   unsigned long phaseStartMs;
   unsigned long backupMs;
   unsigned long turnDurationMs;
@@ -220,24 +221,24 @@ void updateVariantLeds() {
 }
 
 void readLineSensors(bool &leftLine, bool &rightLine) {
-  leftLine  = (digitalRead(E2_PIN) == LOW);
+  leftLine = (digitalRead(E2_PIN) == LOW);
   rightLine = (digitalRead(E1_PIN) == LOW);
 }
 
 void setMotors(int leftSpeed, int rightSpeed) {
   bool useActiveBrakeNow = ENABLE_ACTIVE_BRAKE && matchStarted;
 
-  leftSpeed = constrain(leftSpeed, -100, 100);
-  rightSpeed = constrain(rightSpeed, -100, 100);
+  leftSpeed = ((leftSpeed)<(-100)?(-100):((leftSpeed)>(100)?(100):(leftSpeed)));
+  rightSpeed = ((rightSpeed)<(-100)?(-100):((rightSpeed)>(100)?(100):(rightSpeed)));
 
   int leftPWM = map(abs(leftSpeed), 0, 100, 0, 255);
   int rightPWM = map(abs(rightSpeed), 0, 100, 0, 255);
 
-  leftPWM = constrain(leftPWM, 0, 230);
-  rightPWM = constrain(rightPWM, 0, 230);
+  leftPWM = ((leftPWM)<(0)?(0):((leftPWM)>(230)?(230):(leftPWM)));
+  rightPWM = ((rightPWM)<(0)?(0):((rightPWM)>(230)?(230):(rightPWM)));
 
-  if (leftSpeed != 0) leftPWM = constrain(leftPWM + LEFT_PWM_TRIM, 0, 230);
-  if (rightSpeed != 0) rightPWM = constrain(rightPWM + RIGHT_PWM_TRIM, 0, 230);
+  if (leftSpeed != 0) leftPWM = ((leftPWM + LEFT_PWM_TRIM)<(0)?(0):((leftPWM + LEFT_PWM_TRIM)>(230)?(230):(leftPWM + LEFT_PWM_TRIM)));
+  if (rightSpeed != 0) rightPWM = ((rightPWM + RIGHT_PWM_TRIM)<(0)?(0):((rightPWM + RIGHT_PWM_TRIM)>(230)?(230):(rightPWM + RIGHT_PWM_TRIM)));
 
   if (leftSpeed == 0) {
     if (useActiveBrakeNow) {
@@ -373,7 +374,7 @@ void runCombatCore(bool leftLine, bool rightLine, int s1, int s2, int s3, int s4
     if (lostForMs < LOST_TARGET_SPIN_MS && lastSeen != 3) {
       // Spin toward last known direction
       if (lastSeen == 1) setMotors(-p.searchSpeed, p.searchSpeed);
-      else               setMotors(p.searchSpeed, -p.searchSpeed);
+      else setMotors(p.searchSpeed, -p.searchSpeed);
     } else {
       setMotors(p.searchSpeed, p.searchSpeed);
     }
@@ -461,7 +462,7 @@ void loop() {
 
   bool controlsLocked = (now < inputLockUntilMs);
   bool startTriggered = !controlsLocked && remoteJustStarted;
-  bool stopTriggered  = !controlsLocked && remoteJustStopped;
+  bool stopTriggered = !controlsLocked && remoteJustStopped;
 
   int strategy = 0;
   if (dip1) strategy += 1;
@@ -683,7 +684,7 @@ void loop() {
     if (handleLineEvade(leftLine, rightLine, PROFILE_FLAG_EXPERIMENT, now)) return;
 
     bool frontAny = (s2 || s3 || s4);
-    bool leftFlagCase  = (s1 && frontAny && !s5);
+    bool leftFlagCase = (s1 && frontAny && !s5);
     bool rightFlagCase = (s5 && frontAny && !s1);
     bool flagCombo = leftFlagCase || rightFlagCase;
 
